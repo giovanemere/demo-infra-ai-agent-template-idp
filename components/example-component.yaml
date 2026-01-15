@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-web-app
+  description: Ejemplo de aplicación web generada por AI Agent
+  annotations:
+    aws.com/cost-center: free-tier-audit
+    ai-agent.com/generated: "true"
+spec:
+  type: website
+  lifecycle: production
+  owner: platform-team
+  dependsOn:
+    - resource:default/example-storage
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: example-storage
+  description: Ejemplo de bucket S3
+  annotations:
+    aws.com/service: s3
+spec:
+  type: storage
+  owner: platform-team

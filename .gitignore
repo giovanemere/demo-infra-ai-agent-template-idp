@@ -1,0 +1,14 @@
+# Generated YAML files
+*.yaml
+*.yml
+
+# Except example files
+!example-*.yaml
+!template-*.yaml
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+.DS_Store
