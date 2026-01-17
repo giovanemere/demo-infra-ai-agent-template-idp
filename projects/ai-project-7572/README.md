@@ -31,7 +31,7 @@ Esta solución fue generada automáticamente por IA y utiliza los siguientes ser
 - [Arquitectura Detallada](./docs/architecture.md)
 
 ## 🤖 Generado por
-Infrastructure AI Platform - 2026-01-16 19:06:34
+Infrastructure AI Platform - 2026-01-16 19:14:58
 
 ## 🚀 Despliegue en Backstage
 Este proyecto se detecta automáticamente en Backstage a través del archivo `catalog-info.yaml`.
