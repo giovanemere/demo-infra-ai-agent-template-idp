@@ -2,7 +2,8 @@
 *.yaml
 *.yml
 
-# Except example files
+# Except important files
+!catalog-info.yaml
 !example-*.yaml
 !template-*.yaml
 
