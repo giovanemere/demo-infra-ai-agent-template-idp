@@ -1,0 +1,14 @@
+site_name: Infrastructure AI Platform
+site_description: AI-powered infrastructure analysis and template generation
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - API Reference: api.md
+  - Configuration: configuration.md
+
+theme:
+  name: material
+
+plugins:
+  - techdocs-core
