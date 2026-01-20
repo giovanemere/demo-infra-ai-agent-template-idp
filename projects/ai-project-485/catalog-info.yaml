@@ -1,0 +1,79 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ai-project-485
+  title: Ai Project 485
+  description: Plataforma de streaming de video en tiempo real: API Gateway para autenticación, Lambda para transco...
+  annotations:
+    backstage.io/managed-by-location: url:https://github.com/giovanemere/demo-infra-ai-agent-template-idp/tree/main/projects/ai-project-485/
+    aws.com/cost-center: free-tier-audit
+spec:
+  owner: platform-team
+  domain: cloud-infrastructure
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: detected-architecture-api
+  description: API Gateway - Plataforma de streaming de video en tiempo real: API Gateway para autenticación, Lambda para transcodificación, MediaConvert para procesamiento de video, S3 para almacenamiento de contenido, CloudFront para distribución global, ElastiCache Redis para caché de sesiones, RDS Aurora para metadatos de usuarios, Kinesis Video Streams para ingesta en vivo, SQS para cola de trabajos, SNS para notificaciones push, y CloudWatch para métricas de rendimiento. Debe soportar millones de usuarios concurrentes.
+  annotations:
+    aws.com/cost-center: free-tier-audit
+spec:
+  type: rest-api
+  lifecycle: experimental
+  owner: platform-team
+  system: detected-architecture
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: detected-architecture-lambda
+  description: Lambda Function - Plataforma de streaming de video en tiempo real: API Gateway para autenticación, Lambda para transcodificación, MediaConvert para procesamiento de video, S3 para almacenamiento de contenido, CloudFront para distribución global, ElastiCache Redis para caché de sesiones, RDS Aurora para metadatos de usuarios, Kinesis Video Streams para ingesta en vivo, SQS para cola de trabajos, SNS para notificaciones push, y CloudWatch para métricas de rendimiento. Debe soportar millones de usuarios concurrentes.
+  annotations:
+    aws.com/cost-center: free-tier-audit
+    aws.com/service-type: lambda
+spec:
+  type: service
+  lifecycle: experimental
+  owner: platform-team
+  system: detected-architecture
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: detected-architecture-rds
+  description: RDS Database - Plataforma de streaming de video en tiempo real: API Gateway para autenticación, Lambda para transcodificación, MediaConvert para procesamiento de video, S3 para almacenamiento de contenido, CloudFront para distribución global, ElastiCache Redis para caché de sesiones, RDS Aurora para metadatos de usuarios, Kinesis Video Streams para ingesta en vivo, SQS para cola de trabajos, SNS para notificaciones push, y CloudWatch para métricas de rendimiento. Debe soportar millones de usuarios concurrentes.
+  annotations:
+    aws.com/cost-center: free-tier-audit
+    aws.com/service-type: rds
+spec:
+  type: database
+  owner: platform-team
+  system: detected-architecture
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: detected-architecture-s3
+  description: S3 Storage - Plataforma de streaming de video en tiempo real: API Gateway para autenticación, Lambda para transcodificación, MediaConvert para procesamiento de video, S3 para almacenamiento de contenido, CloudFront para distribución global, ElastiCache Redis para caché de sesiones, RDS Aurora para metadatos de usuarios, Kinesis Video Streams para ingesta en vivo, SQS para cola de trabajos, SNS para notificaciones push, y CloudWatch para métricas de rendimiento. Debe soportar millones de usuarios concurrentes.
+  annotations:
+    aws.com/cost-center: free-tier-audit
+    aws.com/service-type: s3
+spec:
+  type: storage
+  owner: platform-team
+  system: detected-architecture
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: detected-architecture-cloudfront
+  description: CloudFront CDN - Plataforma de streaming de video en tiempo real: API Gateway para autenticación, Lambda para transcodificación, MediaConvert para procesamiento de video, S3 para almacenamiento de contenido, CloudFront para distribución global, ElastiCache Redis para caché de sesiones, RDS Aurora para metadatos de usuarios, Kinesis Video Streams para ingesta en vivo, SQS para cola de trabajos, SNS para notificaciones push, y CloudWatch para métricas de rendimiento. Debe soportar millones de usuarios concurrentes.
+  annotations:
+    aws.com/cost-center: free-tier-audit
+    aws.com/service-type: cloudfront
+spec:
+  type: cdn
+  lifecycle: experimental
+  owner: platform-team
+  system: detected-architecture
