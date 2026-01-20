@@ -1,0 +1,65 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ai-project-5667
+  title: Ai Project 5667
+  description: Plataforma de IoT para monitoreo de sensores industriales: IoT Core para conectividad de dispositivo...
+  annotations:
+    backstage.io/managed-by-location: url:https://github.com/giovanemere/demo-infra-ai-agent-template-idp/tree/main/projects/ai-project-5667/
+    aws.com/cost-center: free-tier-audit
+spec:
+  owner: platform-team
+  domain: cloud-infrastructure
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: detected-architecture-api
+  description: API Gateway - Plataforma de IoT para monitoreo de sensores industriales: IoT Core para conectividad de dispositivos, Kinesis Data Firehose para streaming, Lambda para procesamiento en tiempo real, DynamoDB para datos de sensores, S3 para almacenamiento histórico, CloudWatch para alertas, SNS para notificaciones críticas, y API Gateway para acceso externo. Debe manejar millones de eventos por segundo.
+  annotations:
+    aws.com/cost-center: free-tier-audit
+spec:
+  type: rest-api
+  lifecycle: experimental
+  owner: platform-team
+  system: detected-architecture
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: detected-architecture-lambda
+  description: Lambda Function - Plataforma de IoT para monitoreo de sensores industriales: IoT Core para conectividad de dispositivos, Kinesis Data Firehose para streaming, Lambda para procesamiento en tiempo real, DynamoDB para datos de sensores, S3 para almacenamiento histórico, CloudWatch para alertas, SNS para notificaciones críticas, y API Gateway para acceso externo. Debe manejar millones de eventos por segundo.
+  annotations:
+    aws.com/cost-center: free-tier-audit
+    aws.com/service-type: lambda
+spec:
+  type: service
+  lifecycle: experimental
+  owner: platform-team
+  system: detected-architecture
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: detected-architecture-dynamodb
+  description: DynamoDB Database - Plataforma de IoT para monitoreo de sensores industriales: IoT Core para conectividad de dispositivos, Kinesis Data Firehose para streaming, Lambda para procesamiento en tiempo real, DynamoDB para datos de sensores, S3 para almacenamiento histórico, CloudWatch para alertas, SNS para notificaciones críticas, y API Gateway para acceso externo. Debe manejar millones de eventos por segundo.
+  annotations:
+    aws.com/cost-center: free-tier-audit
+    aws.com/service-type: dynamodb
+spec:
+  type: database
+  owner: platform-team
+  system: detected-architecture
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: detected-architecture-s3
+  description: S3 Storage - Plataforma de IoT para monitoreo de sensores industriales: IoT Core para conectividad de dispositivos, Kinesis Data Firehose para streaming, Lambda para procesamiento en tiempo real, DynamoDB para datos de sensores, S3 para almacenamiento histórico, CloudWatch para alertas, SNS para notificaciones críticas, y API Gateway para acceso externo. Debe manejar millones de eventos por segundo.
+  annotations:
+    aws.com/cost-center: free-tier-audit
+    aws.com/service-type: s3
+spec:
+  type: storage
+  owner: platform-team
+  system: detected-architecture
