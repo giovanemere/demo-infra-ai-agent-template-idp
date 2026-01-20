@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ai-project-1284
+  title: Ai Project 1284
+  description: Sistema de monitoreo simple con CloudWatch, Lambda y SNS para alertas automáticas....
+  annotations:
+    backstage.io/managed-by-location: url:https://github.com/giovanemere/demo-infra-ai-agent-template-idp/tree/main/projects/ai-project-1284/
+    aws.com/cost-center: free-tier-audit
+spec:
+  owner: platform-team
+  domain: cloud-infrastructure
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: detected-architecture-lambda
+  description: Lambda Function - Sistema de monitoreo simple con CloudWatch, Lambda y SNS para alertas automáticas.
+  annotations:
+    aws.com/cost-center: free-tier-audit
+    aws.com/service-type: lambda
+spec:
+  type: service
+  lifecycle: experimental
+  owner: platform-team
+  system: detected-architecture
