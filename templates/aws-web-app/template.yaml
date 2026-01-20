@@ -1,0 +1,77 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: aws-web-app
+  title: AWS Web Application
+  description: Template para crear aplicaciones web en AWS con S3, CloudFront y Lambda
+  tags:
+  - recommended
+  - aws
+  - ' serverless'
+  - ' web'
+  - ' recommended'
+  - aws
+spec:
+  owner: group:default/developers
+  type: service
+  parameters:
+  - title: Project Information
+    required:
+    - name
+    - description
+    properties:
+      name:
+        title: Name
+        type: string
+        description: Unique name for the project
+        pattern: ^[a-zA-Z0-9-]+$
+      description:
+        title: Description
+        type: string
+        description: Description of the project
+      owner:
+        title: Owner
+        type: string
+        description: Owner of the component
+        default: group:default/developers
+      environment:
+        title: Environment
+        type: string
+        description: 'Custom parameter: Environment'
+      region:
+        title: AWS Region
+        type: string
+        description: 'Custom parameter: AWS Region'
+  steps:
+  - id: template
+    name: Fetch Skeleton
+    action: fetch:template
+    input:
+      url: ./content
+      values:
+        name: ${{ parameters.name }}
+        description: ${{ parameters.description }}
+        owner: ${{ parameters.owner }}
+        environment: ${{ parameters.environment }}
+        region: ${{ parameters.region }}
+  - id: publish
+    name: Publish
+    action: publish:github
+    input:
+      allowedHosts:
+      - github.com
+      description: This is ${{ parameters.name }}
+      repoUrl: github.com?owner=giovanemere&repo=${{ parameters.name }}
+  - id: register
+    name: Register
+    action: catalog:register
+    input:
+      repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+      catalogInfoPath: /catalog-info.yaml
+  output:
+    links:
+    - title: Repository
+      url: ${{ steps.publish.output.remoteUrl }}
+    - title: Open in catalog
+      icon: catalog
+      entityRef: ${{ steps.register.output.entityRef }}
