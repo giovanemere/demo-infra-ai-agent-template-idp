@@ -7,15 +7,15 @@ metadata:
   description: "Aplicaci\xF3n AWS web-app con S3, Lambda, CloudFront"
   name: aws-image-app-f9ca235b
   tags:
-  - aws
-  - object-storage
-  - recommended
-  - lambda
   - s3
-  - serverless
   - cloudfront
-  - content-delivery
+  - serverless
+  - lambda
+  - recommended
+  - aws
   - web-app
+  - content-delivery
+  - object-storage
   title: AWS Aws Image App F9Ca235B
 spec:
   output:
