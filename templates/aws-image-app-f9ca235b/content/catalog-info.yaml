@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    aws.com/environment: ${{ values.environment }}
+    aws.com/region: ${{ values.aws_region }}
+    github.com/project-slug: giovanemere/${{ values.name }}
+  description: ${{ values.description }}
+  name: ${{ values.name }}
+  tags:
+  - aws
+  - web-app
+  - s3
+  - lambda
+  - cloudfront
+  title: ${{ values.name | title }}
+spec:
+  lifecycle: experimental
+  owner: group:default/developers
+  system: infrastructure-ai-platform
+  type: service

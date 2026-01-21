@@ -1,0 +1,114 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  annotations:
+    backstage.io/managed-by-location: url:https://github.com/giovanemere/demo-infra-ai-agent-template-idp/blob/main/templates/aws-image-app-f9ca235b/template.yaml
+    github.com/project-slug: giovanemere/demo-infra-ai-agent-template-idp
+  description: "Aplicaci\xF3n AWS web-app con S3, Lambda, CloudFront"
+  name: aws-image-app-f9ca235b
+  tags:
+  - recommended
+  - lambda
+  - web-app
+  - cloudfront
+  - s3
+  - serverless
+  - aws
+  - object-storage
+  - content-delivery
+  title: AWS Aws Image App F9Ca235B
+spec:
+  output:
+    links:
+    - title: Repository
+      url: ${{ steps.publish.output.remoteUrl }}
+    - entityRef: ${{ steps.register.output.entityRef }}
+      icon: catalog
+      title: Open in Catalog
+    - icon: cloud
+      title: AWS Console
+      url: https://console.aws.amazon.com/
+  owner: group:default/developers
+  parameters:
+  - properties:
+      description:
+        description: "Descripci\xF3n breve del proyecto"
+        maxLength: 200
+        title: "Descripci\xF3n"
+        type: string
+      name:
+        description: "Nombre \xFAnico para el proyecto"
+        maxLength: 50
+        pattern: ^[a-zA-Z0-9-]+$
+        title: Nombre del Proyecto
+        type: string
+    required:
+    - name
+    - description
+    title: "Configuraci\xF3n del Proyecto"
+  - properties:
+      aws_region:
+        default: us-east-1
+        description: "Regi\xF3n donde desplegar la infraestructura"
+        enum:
+        - us-east-1
+        - us-west-2
+        - eu-west-1
+        - ap-southeast-1
+        title: "Regi\xF3n AWS"
+        type: string
+      environment:
+        default: dev
+        description: Ambiente de despliegue
+        enum:
+        - dev
+        - staging
+        - prod
+        title: Ambiente
+        type: string
+    required:
+    - aws_region
+    - environment
+    title: "Configuraci\xF3n AWS"
+  - properties:
+      lambda_runtime:
+        default: python3.9
+        enum:
+        - python3.9
+        - python3.11
+        - nodejs18.x
+        - nodejs20.x
+        title: Runtime de Lambda
+        type: string
+      s3_versioning:
+        default: true
+        title: Habilitar Versionado S3
+        type: boolean
+    title: "Configuraci\xF3n de Servicios"
+  steps:
+  - action: fetch:template
+    id: fetch
+    input:
+      url: ./content
+      values:
+        aws_region: ${{ parameters.aws_region }}
+        description: ${{ parameters.description }}
+        environment: ${{ parameters.environment }}
+        name: ${{ parameters.name }}
+    name: Fetch Template
+  - action: publish:github
+    id: publish
+    input:
+      allowedHosts:
+      - github.com
+      defaultBranch: main
+      description: 'AWS Infrastructure: ${{ parameters.description }}'
+      repoUrl: github.com?owner=giovanemere&repo=${{ parameters.name }}
+    name: Publish to GitHub
+  - action: catalog:register
+    id: register
+    input:
+      catalogInfoPath: /catalog-info.yaml
+      repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+    name: Register in Catalog
+  type: service
