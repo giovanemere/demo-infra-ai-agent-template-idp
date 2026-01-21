@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.name }}
+  title: ${{ values.name | title }}
+  description: ${{ values.description }}
+  tags:
+    - aws
+    - web
+    - s3
+    - cloudfront
+    - ${{ values.environment }}
+  annotations:
+    github.com/project-slug: giovanemere/${{ values.name }}
+    backstage.io/techdocs-ref: dir:.
+    aws.com/region: ${{ values.aws_region }}
+    aws.com/environment: ${{ values.environment }}
+    aws.com/services: "S3, CloudFront"
+spec:
+  type: website
+  lifecycle: production
+  owner: group:default/developers
+  system: aws-web-platform

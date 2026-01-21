@@ -1,0 +1,93 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: aws-simple-web-app
+  title: AWS Simple Web Application
+  description: Aplicación web simple con S3 y CloudFront
+  tags:
+    - recommended
+    - aws
+    - web
+    - s3
+    - cloudfront
+spec:
+  owner: group:default/developers
+  type: service
+  parameters:
+    - title: Project Configuration
+      required:
+        - name
+        - description
+        - aws_region
+      properties:
+        name:
+          title: Project Name
+          type: string
+          description: Unique name for the project
+          pattern: '^[a-zA-Z0-9-]+$'
+        description:
+          title: Description
+          type: string
+          description: Description of the web application
+        aws_region:
+          title: AWS Region
+          type: string
+          description: AWS region for deployment
+          default: us-east-1
+          enum:
+            - us-east-1
+            - us-west-2
+            - eu-west-1
+            - ap-southeast-1
+        environment:
+          title: Environment
+          type: string
+          description: Deployment environment
+          default: dev
+          enum:
+            - dev
+            - staging
+            - prod
+        domain_name:
+          title: Domain Name
+          type: string
+          description: Custom domain name (optional)
+  steps:
+    - id: template
+      name: Fetch Template
+      action: fetch:template
+      input:
+        url: ./content
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          aws_region: ${{ parameters.aws_region }}
+          environment: ${{ parameters.environment }}
+          domain_name: ${{ parameters.domain_name }}
+    
+    - id: publish
+      name: Publish to GitHub
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: 'AWS Web App: ${{ parameters.name }}'
+        repoUrl: github.com?owner=giovanemere&repo=${{ parameters.name }}
+        defaultBranch: main
+    
+    - id: register
+      name: Register in Catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+  
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}
+      - title: Open in Catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
+      - title: AWS Console
+        url: https://console.aws.amazon.com/
+        icon: cloud
