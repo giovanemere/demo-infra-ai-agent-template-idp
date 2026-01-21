@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: gemini-api
+  title: Gemini AI API
+  description: Google Gemini AI API service
+spec:
+  type: api
+  owner: group:default/developers
+  system: infrastructure-ai-platform

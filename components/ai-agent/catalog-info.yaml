@@ -17,3 +17,8 @@ spec:
   lifecycle: production
   owner: group:default/developers
   system: infrastructure-ai-platform
+  providesApis:
+    - ai-agent-api
+  dependsOn:
+    - resource:default/gemini-api
+    - resource:default/postgresql-db

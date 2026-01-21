@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ai-agent-api
+  title: AI Agent API
+  description: REST API for Infrastructure AI Agent
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:default/developers
+  system: infrastructure-ai-platform

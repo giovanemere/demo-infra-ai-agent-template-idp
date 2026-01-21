@@ -12,6 +12,12 @@ spec:
     - ./templates/*/template.yaml
     # Componentes del sistema
     - ./components/*/catalog-info.yaml
+    # Grupos y usuarios
+    - ./groups/*.yaml
+    # Recursos
+    - ./resources/*.yaml
+    # APIs
+    - ./apis/*.yaml
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
